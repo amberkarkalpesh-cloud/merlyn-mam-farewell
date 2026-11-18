@@ -6,67 +6,61 @@
 <title>Happy Retirement, Merlyn Ma'am!</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-  body { background: #fdfbf7; color: #333; line-height: 1.6; overflow-x: hidden; }
-  .petal { position: fixed; top: -10%; z-index: 999; pointer-events: none; font-size: 22px; animation: fall linear infinite; }
-  @keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+  body { background: #fdfbf7; color: #333; line-height: 1.7; overflow-x: hidden; }
   
-  header { background: linear-gradient(135deg, #6a11cb, #fc2575); color: white; text-align: center; padding: 55px 20px; border-radius: 0 0 35px 35px; box-shadow: 0 8px 25px rgba(106,17,203,0.25); }
-  header h1 { font-size: 2.5rem; margin-bottom: 8px; }
-  header p { font-size: 1.15rem; opacity: 0.95; margin-bottom: 18px; }
+  header { background: linear-gradient(135deg, #6a11cb, #fc2575); color: white; text-align: center; padding: 65px 20px; border-radius: 0 0 40px 40px; box-shadow: 0 10px 30px rgba(106,17,203,0.25); }
+  header h1 { font-size: 3rem; margin-bottom: 10px; }
+  header p { font-size: 1.3rem; opacity: 0.95; }
 
-  /* Music Button */
-  .music-btn {
-    background: #fff; color: #6a11cb; border: none; padding: 12px 24px;
-    font-size: 1rem; font-weight: bold; border-radius: 30px; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: 0.3s;
-  }
-  .music-btn:hover { background: #ffe6f0; transform: scale(1.05); }
+  .container { max-width: 1050px; margin: 40px auto; padding: 0 20px; }
+  .tribute { background: white; padding: 40px; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; margin-bottom: 40px; border-top: 6px solid #fc2575; }
+  .tribute h2 { color: #6a11cb; margin-bottom: 15px; font-size: 2rem; }
+  .tribute p { font-size: 1.2rem; color: #444; }
 
-  .container { max-width: 950px; margin: 35px auto; padding: 0 20px; }
-  .tribute { background: white; padding: 32px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.07); text-align: center; margin-bottom: 35px; border-top: 6px solid #fc2575; }
-  .tribute h2 { color: #6a11cb; margin-bottom: 12px; font-size: 1.8rem; }
-  .tribute p { font-size: 1.08rem; color: #444; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 50px; }
+  .card { background: white; padding: 25px; border-radius: 16px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+  .card h3 { color: #fc2575; margin-bottom: 8px; font-size: 1.25rem; }
+  .card p { font-size: 1.02rem; }
 
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; margin-bottom: 40px; }
-  .card { background: white; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.06); transition: 0.3s; }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 12px 22px rgba(106,17,203,0.15); }
-  .card h3 { color: #fc2575; margin-bottom: 8px; font-size: 1.15rem; }
+  /* Gift Box Section */
+  .gift-section { text-align: center; padding: 50px 20px; background: linear-gradient(135deg, #fff0f6, #f3e8ff); border-radius: 25px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); }
+  .gift-section h2 { color: #6a11cb; font-size: 2rem; margin-bottom: 10px; }
+  .gift-section p { font-size: 1.15rem; color: #555; margin-bottom: 25px; }
+  .gift-box { font-size: 110px; cursor: pointer; display: inline-block; animation: wiggle 1.5s infinite; transition: transform 0.3s; user-select: none; }
+  .gift-box:hover { transform: scale(1.15); }
+  @keyframes wiggle { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-8deg) scale(1.05); } 75% { transform: rotate(8deg) scale(1.05); } }
 
-  .title { text-align: center; color: #6a11cb; margin-bottom: 20px; font-size: 1.9rem; }
-  
-  /* Smooth Flash & Zoom Slideshow */
-  .slider { position: relative; max-width: 800px; margin: auto; border-radius: 20px; overflow: hidden; box-shadow: 0 12px 30px rgba(0,0,0,0.25); background: #111; }
-  .slide { display: none; position: relative; animation: flashZoom 1.1s ease-in-out; }
-  .slide img { width: 100%; height: 480px; object-fit: contain; display: block; }
-  .cap { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: #fff; padding: 18px; text-align: center; font-size: 1.1rem; }
-  
-  @keyframes flashZoom {
-    0% { opacity: 0.2; filter: brightness(1.6); transform: scale(1.04); }
-    100% { opacity: 1; filter: brightness(1); transform: scale(1); }
-  }
+  /* Fullscreen Theater Slideshow */
+  .theater { display: none; position: fixed; inset: 0; background: #0a0a0f; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; }
+  .theater img { max-width: 92vw; max-height: 80vh; border-radius: 16px; box-shadow: 0 0 40px rgba(252,37,117,0.5); object-fit: contain; }
+  .theater-cap { color: #fff; font-size: 1.5rem; margin-top: 18px; text-align: center; padding: 0 20px; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+  .close-btn { position: absolute; top: 20px; right: 30px; background: rgba(255,255,255,0.2); color: #fff; border: none; padding: 10px 18px; font-size: 1.1rem; border-radius: 25px; cursor: pointer; }
+  .close-btn:hover { background: #fc2575; }
 
-  .prev, .next { cursor: pointer; position: absolute; top: 50%; padding: 14px; margin-top: -22px; color: #fff; font-weight: bold; font-size: 20px; background: rgba(0,0,0,0.5); border-radius: 0 8px 8px 0; user-select: none; }
-  .next { right: 0; border-radius: 8px 0 0 8px; }
-  .prev:hover, .next:hover { background: #fc2575; }
-  
-  .dots { text-align: center; margin-top: 15px; }
-  .dot { cursor: pointer; height: 11px; width: 11px; margin: 0 4px; background: #ccc; border-radius: 50%; display: inline-block; transition: 0.3s; }
-  .active, .dot:hover { background: #fc2575; transform: scale(1.25); }
+  /* Diverse Entry Animations */
+  .anim-bounce { animation: bounceIn 1s ease; }
+  .anim-popup { animation: popUp 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  .anim-slide { animation: slideIn 0.9s ease-out; }
+  .anim-zoom { animation: zoomRotate 1s ease; }
 
-  footer { text-align: center; padding: 30px; background: #2c3e50; color: white; margin-top: 50px; }
-  @media (max-width: 600px) { header h1 { font-size: 1.85rem; } .slide img { height: 310px; } }
+  @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.06); } 70% { transform: scale(0.95); } 100% { transform: scale(1); } }
+  @keyframes popUp { 0% { opacity: 0; transform: translateY(80px) scale(0.8); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes slideIn { 0% { opacity: 0; transform: translateX(120px); } 100% { opacity: 1; transform: translateX(0); } }
+  @keyframes zoomRotate { 0% { opacity: 0; transform: scale(0.5) rotate(-4deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+
+  /* Fireworks Canvas */
+  #fireworksCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 10000; }
+  footer { text-align: center; padding: 30px; background: #2c3e50; color: white; font-size: 1.1rem; }
 </style>
 </head>
 <body>
 
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
+<canvas id="fireworksCanvas"></canvas>
 
 <header>
   <h1>Happy Retirement, Merlyn Ma'am! 🌸</h1>
   <p>Celebrating a wonderful journey of kindness, warmth, and dedication at SIES</p>
-  <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵 Play Tribute Music</button>
 </header>
 
 <div class="container">
@@ -82,69 +76,117 @@
     <div class="card"><h3>💖 Caring Nature</h3><p>Your genuine care and affection for every colleague make you deeply special to us.</p></div>
   </div>
 
-  <h2 class="title">Journey Through The Years 📸</h2>
-  <div class="slider">
-    <div class="slide"><img src="photo1.jpg.jpeg"><div class="cap">The Early Days & Golden Memories ✨</div></div>
-    <div class="slide"><img src="photo2.jpg.jpeg"><div class="cap">The Wonderful SIES Family 🌟</div></div>
-    <div class="slide"><img src="photo3.jpg.jpeg"><div class="cap">Pride & Joy at SIES 🇮🇳</div></div>
-    <div class="slide"><img src="photo4.jpg.jpeg"><div class="cap">Smiles That Brighten Every Day 😊</div></div>
-    <div class="slide"><img src="photo5.jpg.jpeg"><div class="cap">Unforgettable Workplace Moments 💐</div></div>
-    <div class="slide"><img src="photo6.jpg.jpeg"><div class="cap">Campus Days & Cherished Bonds 🏛️</div></div>
-    <div class="slide"><img src="photo7.jpg.jpeg"><div class="cap">Events & Celebrations at SIES 🎉</div></div>
-    <div class="slide"><img src="photo8.jpg.jpeg"><div class="cap">Festive Spirit & Togetherness ✨</div></div>
-    <div class="slide"><img src="photo9.jpg.jpeg"><div class="cap">Wishing You Happiness Always ❤️</div></div>
-    
-    <!-- नवीन फोटो वाढवण्यासाठी खालील ओळ कॉपी करून फोटोचे नाव बदला -->
-    <!-- <div class="slide"><img src="photo10.jpg"><div class="cap">Beautiful Memories Together 🌸</div></div> -->
-
-    <a class="prev" onclick="move(-1)">&#10094;</a>
-    <a class="next" onclick="move(1)">&#10095;</a>
+  <div class="gift-section">
+    <h2>A Special Surprise For You! 🎊</h2>
+    <p>Click on the gift box below to unwrap your cherished memories</p>
+    <div class="gift-box" onclick="openSurprise()">🎁</div>
   </div>
-  <div class="dots" id="dots"></div>
+</div>
+
+<!-- Full-Screen Theater Slideshow -->
+<div class="theater" id="theater">
+  <button class="close-btn" onclick="closeTheater()">✖ Exit Fullscreen</button>
+  <img id="theaterImg" src="">
+  <div class="theater-cap" id="theaterCap"></div>
 </div>
 
 <footer><p>With Love & Warmest Wishes, Your SIES Family 💐</p></footer>
 
 <script>
-  // Music Toggle
-  const music = document.getElementById("bgMusic");
-  const btn = document.getElementById("musicBtn");
-  function toggleMusic() {
-    if (music.paused) {
-      music.play();
-      btn.innerText = "⏸️ Pause Music";
-    } else {
-      music.pause();
-      btn.innerText = "🎵 Play Tribute Music";
+  const memories = [
+    { src: "photo1.jpg.jpeg", cap: "The Early Days & Golden Memories ✨" },
+    { src: "photo2.jpg.jpeg", cap: "The Wonderful SIES Family 🌟" },
+    { src: "photo3.jpg.jpeg", cap: "Pride & Joy at SIES 🇮🇳" },
+    { src: "photo4.jpg.jpeg", cap: "Smiles That Brighten Every Day 😊" },
+    { src: "photo5.jpg.jpeg", cap: "Unforgettable Workplace Moments 💐" },
+    { src: "photo6.jpg.jpeg", cap: "Campus Days & Cherished Bonds 🏛️" },
+    { src: "photo7.jpg.jpeg", cap: "Events & Celebrations at SIES 🎉" },
+    { src: "photo8.jpg.jpeg", cap: "Festive Spirit & Togetherness ✨" },
+    { src: "photo9.jpg.jpeg", cap: "Cherished Gifts & Love ❤️" },
+    { src: "photo10.jpg", cap: "Office Celebrations & Togetherness 🎂" },
+    { src: "photo11.jpg", cap: "Memorable Moments on Campus Steps 🌸" },
+    { src: "photo12.jpg", cap: "United as One SIES Team 💐" },
+    { src: "photo13.jpg", cap: "Traditional Elegance & Smiles ✨" },
+    { src: "photo14.jpg", cap: "Sweet Celebrations at the Desk 🍰" },
+    { src: "photo15.jpg", cap: "Joyful Laughter & Warmth 😊" },
+    { src: "photo16.jpg", cap: "Surrounded by Love & Respect 💖" },
+    { src: "photo17.jpg", cap: "Sharing Sweet Moments Together 🎉" },
+    { src: "photo18.jpg", cap: "Happy Retirement, Merlyn Ma'am! 👑" }
+  ];
+
+  const anims = ["anim-bounce", "anim-popup", "anim-slide", "anim-zoom"];
+  let current = 0, slideTimer;
+
+  function openSurprise() {
+    // Enter Browser Fullscreen for Auditorium Screen
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    }
+    // Play Music
+    document.getElementById("bgMusic").play().catch(() => {});
+    // Trigger Fireworks
+    launchFireworks();
+    // Show Theater Mode
+    document.getElementById("theater").style.display = "flex";
+    current = 0;
+    showPhoto();
+    slideTimer = setInterval(() => {
+      current = (current + 1) % memories.length;
+      showPhoto();
+    }, 3500);
+  }
+
+  function showPhoto() {
+    const img = document.getElementById("theaterImg");
+    const cap = document.getElementById("theaterCap");
+    img.className = "";
+    void img.offsetWidth; // Restart CSS animation
+    img.src = memories[current].src;
+    cap.innerText = memories[current].cap;
+    img.classList.add(anims[current % anims.length]);
+  }
+
+  function closeTheater() {
+    clearInterval(slideTimer);
+    document.getElementById("theater").style.display = "none";
+    if (document.exitFullscreen && document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
     }
   }
 
-  // Auto Slideshow (Every 3 seconds)
-  let idx = 1, slides = document.getElementsByClassName("slide"), dotsBox = document.getElementById("dots");
-  for(let i=1; i<=slides.length; i++){ dotsBox.innerHTML += `<span class="dot" onclick="show(${idx=i})"></span>`; }
-  let dots = document.getElementsByClassName("dot");
-  function move(n){ show(idx += n); }
-  function show(n){
-    if(n > slides.length) idx = 1;
-    if(n < 1) idx = slides.length;
-    for(let s of slides) s.style.display = "none";
-    for(let d of dots) d.className = "dot";
-    slides[idx-1].style.display = "block";
-    dots[idx-1].className += " active";
-  }
-  show(idx);
-  setInterval(() => move(1), 3000);
+  // Fireworks Animation
+  const canvas = document.getElementById("fireworksCanvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  let particles = [];
 
-  // Falling Petals
-  const icons = ['🌸','🌺','✨','💐','🌷'];
-  setInterval(() => {
-    let p = document.createElement('div');
-    p.className = 'petal'; p.innerText = icons[Math.floor(Math.random()*icons.length)];
-    p.style.left = Math.random()*100 + 'vw';
-    p.style.animationDuration = (Math.random()*3 + 4) + 's';
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 7000);
-  }, 450);
+  function launchFireworks() {
+    for (let b = 0; b < 6; b++) {
+      setTimeout(() => {
+        const x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
+        const y = Math.random() * canvas.height * 0.5 + 80;
+        const colors = ["#ff2a85", "#ffcc00", "#00f2fe", "#a18cd1", "#ff9a9e", "#43e97b"];
+        for (let i = 0; i < 65; i++) {
+          const angle = (Math.PI * 2 * i) / 65;
+          const speed = Math.random() * 6 + 2;
+          particles.push({ x, y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, alpha: 1, color: colors[Math.floor(Math.random() * colors.length)] });
+        }
+      }, b * 450);
+    }
+  }
+
+  function animateFireworks() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, idx) => {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.08; p.alpha -= 0.015;
+      ctx.globalAlpha = Math.max(p.alpha, 0);
+      ctx.fillStyle = p.color;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI * 2); ctx.fill();
+      if (p.alpha <= 0) particles.splice(idx, 1);
+    });
+    requestAnimationFrame(animateFireworks);
+  }
+  animateFireworks();
 </script>
 </body>
 </html>
